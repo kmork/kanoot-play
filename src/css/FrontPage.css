@@ -6,6 +6,7 @@
     height: 100vh;
     background-color: #6a5acd; /* More bluish purple */
     margin: 0; /* Ensure no margin around the body */
+    margin-top: -50px; /* Move all elements up by 50px */
 }
 
 .header {

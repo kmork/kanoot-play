@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './FrontPage.css';
+import './css/FrontPage.css';
 import Spinner from './Spinner';
 import { useNavigate } from 'react-router-dom';
 

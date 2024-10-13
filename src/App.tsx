@@ -1,4 +1,4 @@
-import './App.css'
+import './css/App.css'
 import FrontPage from "./FrontPage.tsx";
 import { Routes, Route } from 'react-router-dom';
 import GamePage from "./GamePage.tsx";
