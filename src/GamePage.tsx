@@ -1,25 +1,30 @@
 import { useState } from 'react';
 import './css/FrontPage.css';
 import Spinner from './Spinner';
-import { useNavigate } from 'react-router-dom';
+import { usePlayer } from './PlayerContext.tsx';
 
 function GamePage() {
-    const [gamePin, setGamePin] = useState('');
+    const [nickname, setNickname] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const navigate = useNavigate();
+    const { playerId, gamePin } = usePlayer();
 
-    const handleJoinGame = async () => {
+    const handleNickname = async () => {
         setLoading(true);
         setError('');
         try {
-            const response = await fetch(`https://api.example.com/join-game?pin=${gamePin}`);
-            const data = await response.json();
+            const response = await fetch(`/play/${gamePin}/player/${playerId}/nickname`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ nickname }),
+            });
             setLoading(false);
-            if (data.success) {
-                navigate('/game');
+            if (response.ok) {
+                console.log('Nickname set successfully');
             } else {
-                setError('Invalid PIN. Please try again.');
+                setError('Failed to set nickname');
             }
         } catch (error) {
             setLoading(false);
@@ -37,11 +42,11 @@ function GamePage() {
                     <input
                         type="text"
                         placeholder="Nickname"
-                        value={gamePin}
-                        onChange={(e) => setGamePin(e.target.value)}
+                        value={nickname}
+                        onChange={(e) => setNickname(e.target.value)}
                         className="game-pin-input"
                     />
-                    <button onClick={handleJoinGame} className="join-button" disabled={loading}>
+                    <button onClick={handleNickname} className="join-button" disabled={loading}>
                         {loading ? <Spinner /> : 'OK, go!'}
                     </button>
                     {error && <p className="error-message">{error}</p>}

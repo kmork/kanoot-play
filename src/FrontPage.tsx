@@ -2,26 +2,31 @@ import { useState } from 'react';
 import './css/FrontPage.css';
 import Spinner from './Spinner';
 import { useNavigate } from 'react-router-dom';
+import { usePlayer } from './PlayerContext';
 
 function FrontPage() {
-    const [gamePin, setGamePin] = useState('');
+    const [gamePinInput, setGamePinInput] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { setPlayerId, setGamePin } = usePlayer();
 
     const handleJoinGame = async () => {
         setLoading(true);
         setError('');
         try {
-            const response = await fetch(`/play/${gamePin}/joinGame`, {
+            const response = await fetch(`/play/${gamePinInput}/joinGame`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name: gamePin }),
+                body: JSON.stringify({ name: gamePinInput }),
             });
             setLoading(false);
             if (response.ok) {
+                const data = await response.json();
+                setPlayerId(data.playerId); // Store playerId in context
+                setGamePin(gamePinInput); // Store gamePin in context
                 navigate('/game');
             } else {
                 setError('Invalid PIN. Please try again.');
@@ -42,8 +47,8 @@ function FrontPage() {
                     <input
                         type="text"
                         placeholder="Game PIN"
-                        value={gamePin}
-                        onChange={(e) => setGamePin(e.target.value)}
+                        value={gamePinInput}
+                        onChange={(e) => setGamePinInput(e.target.value)}
                         className="game-pin-input"
                     />
                     <button onClick={handleJoinGame} className="join-button" disabled={loading}>
