@@ -1,0 +1,68 @@
+.front-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #6a5acd; /* More bluish purple */
+    margin: 0; /* Ensure no margin around the body */
+}
+
+.header {
+    margin-bottom: 10px; /* Increase margin for more space */
+}
+
+.header h1 {
+    color: white; /* Change text color to white */
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive; /* Use a more joyful font */
+    font-size: 4rem; /* Increase font size */
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white; /* White box */
+    padding: 22px; /* Increase padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for better visibility */
+    max-width: 600px; /* Increase the max-width to make the box larger */
+    width: 100%; /* Ensure it takes the full width up to the max-width */
+}
+
+.game-pin-input {
+    width: 100%;
+    max-width: 350px; /* Adjust as needed */
+    padding: 15px; /* Increase padding */
+    font-size: 18px; /* Increase font size */
+    margin-bottom: 10px; /* Adjust space below the input field */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center; /* Center the text */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.join-button {
+    width: 100%;
+    max-width: 350px; /* Adjust as needed */
+    padding: 15px; /* Increase padding */
+    font-size: 18px; /* Increase font size */
+    margin-top: 5px; /* Adjust space above the button */
+    border: none;
+    border-radius: 4px;
+    text-align: center; /* Center the text */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    background-color: #333; /* Dark grey */
+    color: white;
+    cursor: pointer;
+}
+
+.join-button:hover {
+    background-color: #555; /* Slightly lighter grey on hover */
+}
