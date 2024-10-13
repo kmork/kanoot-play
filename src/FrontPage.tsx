@@ -27,7 +27,7 @@ function FrontPage() {
                 const data = await response.json();
                 setPlayerId(data.playerId); // Store playerId in context
                 setGamePin(gamePinInput); // Store gamePin in context
-                navigate('/game');
+                navigate('/nickname');
             } else {
                 setError('Invalid PIN. Please try again.');
             }

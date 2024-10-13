@@ -31,8 +31,14 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
   line-height: 1.1;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive; /* Use a more joyful font */
+  font-size: 4rem; /* Increase font size */
+  color: white
+}
+
+h2 {
+  color: white
 }
 
 button {

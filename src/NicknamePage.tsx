@@ -2,11 +2,13 @@ import { useState } from 'react';
 import './css/FrontPage.css';
 import Spinner from './Spinner';
 import { usePlayer } from './PlayerContext.tsx';
+import { useNavigate } from 'react-router-dom';
 
-function GamePage() {
+function NicknamePage() {
     const [nickname, setNickname] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
     const { playerId, gamePin } = usePlayer();
 
     const handleNickname = async () => {
@@ -22,7 +24,7 @@ function GamePage() {
             });
             setLoading(false);
             if (response.ok) {
-                console.log('Nickname set successfully');
+                navigate('/waiting');
             } else {
                 setError('Failed to set nickname');
             }
@@ -56,4 +58,4 @@ function GamePage() {
     );
 }
 
-export default GamePage;
+export default NicknamePage;
