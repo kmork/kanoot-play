@@ -3,7 +3,7 @@ import './FrontPage.css';
 import Spinner from './Spinner';
 import { useNavigate } from 'react-router-dom';
 
-function FrontPage() {
+function GamePage() {
     const [gamePin, setGamePin] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -13,15 +13,10 @@ function FrontPage() {
         setLoading(true);
         setError('');
         try {
-            const response = await fetch(`/play/${gamePin}/joinGame`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: gamePin }),
-            });
+            const response = await fetch(`https://api.example.com/join-game?pin=${gamePin}`);
+            const data = await response.json();
             setLoading(false);
-            if (response.ok) {
+            if (data.success) {
                 navigate('/game');
             } else {
                 setError('Invalid PIN. Please try again.');
@@ -41,13 +36,13 @@ function FrontPage() {
                 <div className="form-container">
                     <input
                         type="text"
-                        placeholder="Game PIN"
+                        placeholder="Nickname"
                         value={gamePin}
                         onChange={(e) => setGamePin(e.target.value)}
                         className="game-pin-input"
                     />
                     <button onClick={handleJoinGame} className="join-button" disabled={loading}>
-                        {loading ? <Spinner /> : 'Enter'}
+                        {loading ? <Spinner /> : 'OK, go!'}
                     </button>
                     {error && <p className="error-message">{error}</p>}
                 </div>
@@ -56,4 +51,4 @@ function FrontPage() {
     );
 }
 
-export default FrontPage;
+export default GamePage;
