@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #6a5acd; /* More bluish purple */
+    background-color: #483d8b;; /* More bluish purple */
     margin: 0; /* Ensure no margin around the body */
     margin-top: -50px; /* Move all elements up by 50px */
 }
@@ -16,6 +16,7 @@
 .header h1 {
     font-family: 'Comic Sans MS', 'Comic Sans', cursive; /* Use a more joyful font */
     font-size: 4rem; /* Increase font size */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .main-content {
