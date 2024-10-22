@@ -24,7 +24,7 @@ function NicknamePage() {
             });
             setLoading(false);
             if (response.ok) {
-                navigate('/waiting');
+                navigate('/game');
             } else {
                 setError('Failed to set nickname');
             }
