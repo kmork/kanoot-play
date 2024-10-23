@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import './css/FrontPage.css';
+import {usePlayer} from "./PlayerContext.tsx";
 
 function GamePage() {
     const [headerMessage, setHeaderMessage] = useState('Connecting to game...');
     const [subHeaderMessage, setSubHeaderMessage] = useState('');
+    const { playerId, gamePin } = usePlayer();
 
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:8080/updates');
+        const socket = new WebSocket(`ws://localhost:8080/play/${gamePin}`);
 
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
@@ -32,7 +34,7 @@ function GamePage() {
         return () => {
             socket.close();
         };
-    }, []);
+    }, [gamePin]);
 
     return (
         <div className="front-page">
